@@ -1,0 +1,22 @@
+:root {
+    /* Colores corporativos (de la logomarca) */
+    --cor-azul-escuro: #002366;
+    /* Azul oscuro */
+    --cor-azul-claro: #3DB7E4;
+    /* Celeste */
+    --cor-vermelho: #E4032E;
+    /* Rojo torre */
+
+    /* Colores base */
+    --cor-fundo: #ffffff;
+    --cor-fundo-claro: #f8f9fa;
+    --cor-texto: #333333;
+    --cor-texto-claro: #6c757d;
+
+    /* Tipografías */
+    --fonte-principal: 'Poppins', sans-serif;
+    --fonte-secundaria: 'Roboto', sans-serif;
+
+    /* Sombras */
+    --sombra-padrao: 0 8px 25px rgba(0, 0, 0, 0.07);
+}
