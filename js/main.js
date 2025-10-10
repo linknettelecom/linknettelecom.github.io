@@ -100,35 +100,37 @@ const locations = [
 ];
 
 async function initMap() {
-    const initialPosition = { lat: -9.76, lng: -64.90 };
-    map = new google.maps.Map(document.getElementById("map"), {
-        zoom: 8,
-        center: initialPosition,
-        disableDefaultUI: true, 
-        zoomControl: true,
-        mapTypeID: "hybrid" 
-    });
-    
-    locations.forEach(location => {
-        new google.maps.Marker({
-            position: { lat: location.lat, lng: location.lng },
-            map: map,
-            icon: {
-                url: 'assets/images/logo-completo.png',
-                scaledSize: new google.maps.Size(90, 28),
-                anchor: new google.maps.Point(45, 28)
-            },
-            label: {
-                text: location.title,
-                color: 'white',
-                fontWeight: 'bold',
-                fontSize: '12px',
-                className: 'map-marker-label' 
-            }
-        });
-    });
+  const initialPosition = { lat: -9.76, lng: -64.90 };
 
+  map = new google.maps.Map(document.getElementById("map"), {
+    zoom: 8,
+    center: initialPosition,
+    mapTypeId: "hybrid",     // ← satélite + nombres de calles (como tu 2ª imagen)
+    disableDefaultUI: true,  // deja tu UI minimal
+    zoomControl: true
+    // styles: mapStyle  ← quítalo/ comenta esta línea
+  });
+
+  locations.forEach(location => {
+    new google.maps.Marker({
+      position: { lat: location.lat, lng: location.lng },
+      map,
+      icon: {
+        url: 'assets/images/logo-completo.png',
+        scaledSize: new google.maps.Size(90, 28),
+        anchor: new google.maps.Point(45, 28)
+      },
+      label: {
+        text: location.title,
+        color: 'white',
+        fontWeight: 'bold',
+        fontSize: '12px',
+        className: 'map-marker-label'
+      }
+    });
+  });
 }
+
 
 
 
