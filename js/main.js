@@ -106,7 +106,7 @@ async function initMap() {
         center: initialPosition,
         disableDefaultUI: true, 
         zoomControl: true,
-        mapTypeID: "satellite" 
+        mapTypeID: "hybrid" 
     });
     
     locations.forEach(location => {
@@ -129,5 +129,6 @@ async function initMap() {
     });
 
 }
+
 
 
