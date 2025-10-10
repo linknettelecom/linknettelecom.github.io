@@ -1,25 +1,32 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Link Net – Levando o mundo até você</title>
-    <meta name="description" content="Conecte-se com a Link Net! Oferecemos internet fibra óptica de alta velocidade, TV e telemedicina em Rondônia. Conheça nossos planos!">
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <meta name="description"
+        content="Conecte-se com a Link Net! Oferecemos internet fibra óptica de alta velocidade, TV e telemedicina em Rondônia. Conheça nossos planos!" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Roboto:wght@400;500&display=swap"
+        rel="stylesheet" />
 </head>
+
 <body>
 
     <header class="site-header">
-        <div class="container">
+        <div class="container header-inner">
             <a href="index.html" class="site-logo">
                 <img src="assets/images/logo.png" alt="Logo de Link Net Telecom">
             </a>
 
-            <nav class="main-nav">
+            <nav class="main-nav" id="mainNav">
                 <ul>
                     <li><a href="#inicio">Início</a></li>
                     <li><a href="#sobre">Sobre nós</a></li>
@@ -28,10 +35,10 @@
                 </ul>
             </nav>
 
-            <a href="https://ixc.linknettelecom.net.br/central_assinante_web/login" target="_blank" class="button-cta">
-                Área do Cliente
-            </a>
-            <button class="mobile-nav-toggle" aria-label="Abrir menu">
+            <a href="https://ixc.linknettelecom.net.br/central_assinante_web/login" target="_blank"
+                class="button-cta">Área do Cliente</a>
+
+            <button class="mobile-nav-toggle" aria-label="Abrir menu" id="mobileToggle">
                 <span class="bar"></span>
                 <span class="bar"></span>
                 <span class="bar"></span>
@@ -43,41 +50,104 @@
         <section id="inicio" class="hero-section">
             <div class="container">
                 <div class="hero-content">
-                    <h1>Internet Fibra Óptica da LinkNet</h1>
-                    <p>Conexão de Alta Velocidade e Estabilidade para a Sua Vida Conectada.</p>
-                    <a href="#planos" class="button-hero">Conheça nossos Planos</a>
+                    <h1>A melhor <span>INTERNET</span> fibra óptica de Rondônia</h1>
+                    <p><strong>Alta velocidade e estabilidade</strong> para você navegar, jogar e assistir sem
+                        interrupções.</p>
+
+                    <div class="hero-row">
+                        <div class="hero-price-box">
+                            <span class="price-label">Planos a partir de</span>
+                            <div class="price-value">
+                                <span class="currency">R$</span>
+                                <span class="amount">99,00</span>
+                                <span class="per">/mês</span>
+                            </div>
+                            <span class="support">Com suporte local</span>
+                        </div>
+                        <div class="hero-cta-group">
+                            <a href="#planos" class="button-hero">QUERO SER LINK NET</a>
+                        </div>
+                    </div>
+
+                    <div class="hero-badges">
+                        <span class="badge"><i class="fa-solid fa-tv"></i> LinkNet TV</span>
+                        <span class="badge"><i class="fa-solid fa-wifi"></i> Wi-Fi Premium</span>
+                        <span class="badge"><i class="fa-solid fa-rocket"></i> Instalação gratuita</span>
+                        <span class="badge"><i class="fa-solid fa-mobile-screen"></i> Apps integrados</span>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section id="servicos" class="features-section animate-on-scroll">
+        <section id="servicos-adicionais" class="extras-elegantes animate-on-scroll">
             <div class="container">
-                <div class="features-grid">
-                    <div class="feature-item">
-                        <div class="feature-icon"><i class="fa-solid fa-wifi"></i></div>
-                        <h3>Internet Rápida</h3>
-                    </div>
-                    <div class="feature-item">
-                        <div class="feature-icon"><i class="fa-solid fa-tv"></i></div>
-                        <h3>TV por Assinatura</h3>
-                    </div>
-                    <div class="feature-item">
-                        <div class="feature-icon"><i class="fa-solid fa-laptop-medical"></i></div>
+                <header class="extras-header">
+                    <h2>Mais praticidade, mais Link Net</h2>
+                    <p>Recursos que elevam sua experiência: simples, confiáveis e sempre à mão.</p>
+                </header>
+
+                <div class="extras-grid">
+                    <!-- Card 1 -->
+                    <article class="extra-card">
+                        <div class="card-icon">
+                            <i class="fa-solid fa-user-doctor"></i>
+                        </div>
                         <h3>Telemedicina</h3>
-                    </div>
-                    <div class="feature-item">
-                        <div class="feature-icon"><i class="fa-solid fa-car-battery"></i></div>
+                        <p>Atendimento médico remoto com segurança e praticidade.</p>
+                        <ul class="bullet-list">
+                            <li>Orientações e receitas digitais</li>
+                            <li>Histórico em um só lugar</li>
+                            <li>Plantão médico 24 horas</li>
+                        </ul>
+                    </article>
+
+                    <!-- Card 2 -->
+                    <article class="extra-card">
+                        <div class="card-icon">
+                            <i class="fa-solid fa-headset"></i>
+                        </div>
+                        <h3>Central do Assinante</h3>
+                        <p>2ª via, suporte, velocidade e gestão do plano.</p>
+                        <ul class="bullet-list">
+                            <li>Controle de faturas</li>
+                            <li>Teste de velocidade</li>
+                            <li>Chamados rápidos</li>
+                        </ul>
+                    </article>
+
+                    <!-- Card 3 -->
+                    <article class="extra-card">
+                        <div class="card-icon">
+                            <i class="fa-solid fa-tv"></i>
+                        </div>
+                        <h3>LinkNet TV</h3>
+                        <p>TV ao vivo, filmes e esportes onde você estiver.</p>
+                        <ul class="bullet-list">
+                            <li>Multi-tela</li>
+                            <li>Conteúdo sob demanda</li>
+                            <li>Interface simples</li>
+                        </ul>
+                    </article>
+
+                    <!-- Card 4 -->
+                    <article class="extra-card">
+                        <div class="card-icon">
+                            <i class="fa-solid fa-car-battery"></i>
+                        </div>
                         <h3>Kit de Bateria</h3>
-                    </div>
-                    <div class="feature-item">
-                        <div class="feature-icon"><i class="fa-solid fa-headset"></i></div>
-                        <h3>Suporte 24hr</h3>
-                    </div>
+                        <p>Energia acabou? Sem estresse. Internet ativa por horas.</p>
+                        <ul class="bullet-list">
+                            <li>Até 9 horas de autonomia</li>
+                            <li>Protege seus equipamentos</li>
+                            <li>Conexão sempre contínua</li>
+                        </ul>
+                    </article>
                 </div>
             </div>
         </section>
 
-                <section id="planos" class="pricing-section animate-on-scroll">
+
+        <section id="planos" class="pricing-section animate-on-scroll">
             <div class="container">
                 <div class="section-header">
                     <h6>Planos</h6>
@@ -88,22 +158,25 @@
                     <div class="pricing-card">
                         <div class="card-icon"><i class="fa-solid fa-rocket"></i></div>
                         <h3>Plano Start</h3>
-                        <p class="card-speed">500 Megas</p>
-                        <div class="card-price"><span class="amount">R$114,90</span><span class="frequency">/Mês</span></div>
+                        <div class="plan-speed">500 <span>Megas</span></div>
+                        <div class="card-price"><span class="amount">R$114,90</span><span class="frequency">/Mês</span>
+                        </div>
                         <ul class="card-features">
                             <li><i class="fa-solid fa-check"></i> Wi-fi Premium</li>
                             <li><i class="fa-solid fa-check"></i> Instalação Grátis</li>
                             <li><i class="fa-solid fa-check"></i> Suporte 24 horas</li>
                             <li><i class="fa-solid fa-check"></i> LinkNet TV</li>
                         </ul>
-                        <a href="https://api.whatsapp.com/send/?phone=556932368140" target="_blank" class="button-primary">Contratar Agora</a>
+                        <a href="https://api.whatsapp.com/send/?phone=556932368140" target="_blank"
+                            class="button-primary">Contratar Agora</a>
                     </div>
                     <div class="pricing-card recommended">
                         <span class="recommended-badge">Recomendado</span>
                         <div class="card-icon"><i class="fa-solid fa-star"></i></div>
                         <h3>Plano Premium</h3>
-                        <p class="card-speed">800 Megas</p>
-                        <div class="card-price"><span class="amount">R$149,90</span><span class="frequency">/Mês</span></div>
+                        <div class="plan-speed">800 <span>Megas</span></div>
+                        <div class="card-price"><span class="amount">R$149,90</span><span class="frequency">/Mês</span>
+                        </div>
                         <ul class="card-features">
                             <li><i class="fa-solid fa-check"></i> Wi-fi Premium</li>
                             <li><i class="fa-solid fa-check"></i> Instalação Grátis</li>
@@ -111,13 +184,15 @@
                             <li><i class="fa-solid fa-check"></i> LinkNet TV</li>
                             <li><i class="fa-solid fa-check"></i> Telemedicina</li>
                         </ul>
-                        <a href="https://api.whatsapp.com/send/?phone=556932368140" target="_blank" class="button-primary">Contratar Agora</a>
+                        <a href="https://api.whatsapp.com/send/?phone=556932368140" target="_blank"
+                            class="button-primary">Contratar Agora</a>
                     </div>
                     <div class="pricing-card">
                         <div class="card-icon"><i class="fa-solid fa-gem"></i></div>
                         <h3>Plano Supreme</h3>
-                        <p class="card-speed">1000 Megas</p>
-                        <div class="card-price"><span class="amount">R$179,90</span><span class="frequency">/Mês</span></div>
+                        <div class="plan-speed">1000 <span>Megas</span></div>
+                        <div class="card-price"><span class="amount">R$179,90</span><span class="frequency">/Mês</span>
+                        </div>
                         <ul class="card-features">
                             <li><i class="fa-solid fa-check"></i> Wi-fi Premium</li>
                             <li><i class="fa-solid fa-check"></i> Instalação Grátis</li>
@@ -125,7 +200,8 @@
                             <li><i class="fa-solid fa-check"></i> LinkNet TV</li>
                             <li><i class="fa-solid fa-check"></i> Telemedicina</li>
                         </ul>
-                        <a href="https://api.whatsapp.com/send/?phone=556932368140" target="_blank" class="button-primary">Contratar Agora</a>
+                        <a href="https://api.whatsapp.com/send/?phone=556932368140" target="_blank"
+                            class="button-primary">Contratar Agora</a>
                     </div>
                 </div>
             </div>
@@ -134,11 +210,16 @@
         <section id="sobre" class="about-section animate-on-scroll">
             <div class="container">
                 <div class="about-image">
-                    <img src="assets/images/about-image.jpg" alt="Atendente de suporte da Link Net trabalhando com headset">
+                    <img src="assets/images/about-image.jpg"
+                        alt="Atendente de suporte da Link Net trabalhando com headset">
                 </div>
                 <div class="about-content">
+                    <span class="eyebrow">Sobre a Link Net</span>
                     <h2>Conexão sob Medida para Você</h2>
-                    <p>Na LinkNet, entendemos que cada cliente é único. Por isso, temos planos sob medida para diferentes perfis, todos com o compromisso de entregar velocidade e estabilidade em qualquer situação.</p>
+                    <p class="lead">Na LinkNet, entendemos que cada cliente é único. Por isso, temos planos sob medida
+                        para
+                        diferentes perfis, todos com o compromisso de entregar velocidade e estabilidade em qualquer
+                        situação.</p>
                     <ul class="advantages-list">
                         <li><i class="fa-solid fa-check"></i> Suporte 24 horas</li>
                         <li><i class="fa-solid fa-check"></i> Atendimento Rápido</li>
@@ -147,51 +228,6 @@
                         <li><i class="fa-solid fa-check"></i> Conexão Estável</li>
                         <li><i class="fa-solid fa-check"></i> Energia Extra</li>
                     </ul>
-                    <a href="#contato" class="button-secondary">Saiba mais</a>
-                </div>
-            </div>
-        </section>
-
-        <section id="servicos-adicionais" class="tabs-section animate-on-scroll">
-            <div class="container container-wide">
-                <div class="section-header">
-                    <h2>Nossos Aplicativos e Serviços</h2>
-                    <p>Tudo o que você precisa para uma experiência completa, na palma da sua mão.</p>
-                </div>
-                <div class="vertical-tabs">
-                    <div class="tab-list" role="tablist" aria-label="Serviços Adicionais">
-                        <button id="tab-1" class="tab-button active" role="tab" aria-selected="true" aria-controls="panel-1">Telemedicina</button>
-                        <button id="tab-2" class="tab-button" role="tab" aria-selected="false" aria-controls="panel-2">Central do Assinante</button>
-                        <button id="tab-3" class="tab-button" role="tab" aria-selected="false" aria-controls="panel-3">LinkNet TV</button>
-                    </div>
-                    <div class="tab-content">
-                        <div id="panel-1" class="tab-panel active" role="tabpanel" aria-labelledby="tab-1">
-                            <h3>Cuidado e Saúde Sem Sair de Casa</h3>
-                            <p>Consultas ilimitadas por vídeo com diversas especialidades para você e sua família, incluindo Clínica Geral, Pediatria, Ginecologia e até Medicina Veterinária.</p>
-                            <ul class="advantages-list">
-                                <li><i class="fa-solid fa-check"></i> Consultas 24 horas</li>
-                                <li><i class="fa-solid fa-check"></i> Receitas e Atestados Digitais</li>
-                                <li><i class="fa-solid fa-check"></i> Sem fila de espera</li>
-                            </ul>
-                            <a href="#planos" class="button-secondary">Ver Planos com Telemedicina</a>
-                        </div>
-                        <div id="panel-2" class="tab-panel" role="tabpanel" aria-labelledby="tab-2">
-                            <h3>Sua Conta na Palma da Mão</h3>
-                            <p>Baixe nosso aplicativo para gerenciar sua conta de forma rápida e segura. Consulte faturas, realize pagamentos, solicite suporte e muito mais.</p>
-                            <div class="app-badges">
-                                <a href="https://play.google.com/store/apps/details?id=br.net.linknettelecom&pli=1" target="_blank"><img src="https://linknettelecom.net.br/wp-content/uploads/2024/11/disponivel-google-play-badge.png" alt="Disponível no Google Play"></a>
-                                <a href="https://apps.apple.com/br/app/link-net-telecomunicacoes-ltda/id6447695629" target="_blank"><img src="https://linknettelecom.net.br/wp-content/uploads/2024/11/apple.png" alt="Baixar na App Store"></a>
-                            </div>
-                        </div>
-                        <div id="panel-3" class="tab-panel" role="tabpanel" aria-labelledby="tab-3">
-                            <h3>Sua TV Onde e Quando Quiser</h3>
-                            <p>Assista a canais de TV ao vivo, filmes, séries e esportes em qualquer dispositivo. Leve o entretenimento da LinkNet com você.</p>
-                            <div class="app-badges">
-                                <a href="https://play.google.com/store/apps/details?id=br.net.linknettelecom.play.mobile" target="_blank"><img src="https://linknettelecom.net.br/wp-content/uploads/2024/11/disponivel-google-play-badge.png" alt="Disponível no Google Play"></a>
-                                <a href="https://apps.apple.com/br/app/linknettv-play/id6450926522" target="_blank"><img src="https://linknettelecom.net.br/wp-content/uploads/2024/11/apple.png" alt="Baixar na App Store"></a>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </section>
@@ -202,27 +238,40 @@
                 <div class="accordion animate-on-scroll">
                     <div class="accordion-item" data-lat="-8.75861490943112" data-lng="-63.901736050868585">
                         <button class="accordion-header">Porto Velho <i class="fa-solid fa-chevron-down"></i></button>
-                        <div class="accordion-content"><p>Av. Pinheiro Machado, 1257 - Olaria, Porto Velho - RO, 76801-247</p></div>
+                        <div class="accordion-content">
+                            <p>Av. Pinheiro Machado, 1257 - Olaria, Porto Velho - RO, 76801-247</p>
+                        </div>
                     </div>
                     <div class="accordion-item" data-lat="-9.710443818199323" data-lng="-64.53161394476314">
-                        <button class="accordion-header">União Bandeirantes <i class="fa-solid fa-chevron-down"></i></button>
-                        <div class="accordion-content"><p>Av 3 de Dezembro - União Bandeirantes, Porto Velho - RO, 76841-000</p></div>
+                        <button class="accordion-header">União Bandeirantes <i
+                                class="fa-solid fa-chevron-down"></i></button>
+                        <div class="accordion-content">
+                            <p>Av 3 de Dezembro - União Bandeirantes, Porto Velho - RO, 76841-000</p>
+                        </div>
                     </div>
                     <div class="accordion-item" data-lat="-9.257549542880978" data-lng="-64.4087398966081">
                         <button class="accordion-header">Jaci Paraná <i class="fa-solid fa-chevron-down"></i></button>
-                        <div class="accordion-content"><p>R. José Rodrigues, Centro - N 1530 - Jaci Paraná, Porto Velho - RO, 76840-000</p></div>
+                        <div class="accordion-content">
+                            <p>R. José Rodrigues, Centro - N 1530 - Jaci Paraná, Porto Velho - RO, 76840-000</p>
+                        </div>
                     </div>
                     <div class="accordion-item" data-lat="-10.414480862625098" data-lng="-65.33144535390771">
                         <button class="accordion-header">Nova Mamoré <i class="fa-solid fa-chevron-down"></i></button>
-                        <div class="accordion-content"><p>Av. Dezidério Domingues Lopes, 3247 - Cidade Nova, Nova Mamoré - RO, 76857-000</p></div>
+                        <div class="accordion-content">
+                            <p>Av. Dezidério Domingues Lopes, 3247 - Cidade Nova, Nova Mamoré - RO, 76857-000</p>
+                        </div>
                     </div>
                     <div class="accordion-item" data-lat="-10.780280005321504" data-lng="-65.33301796161155">
                         <button class="accordion-header">Guajará-Mirim <i class="fa-solid fa-chevron-down"></i></button>
-                        <div class="accordion-content"><p>Av. 15 de Novembro, 2150 - Serraria, Guajará-Mirim - RO, 76850-000</p></div>
+                        <div class="accordion-content">
+                            <p>Av. 15 de Novembro, 2150 - Serraria, Guajará-Mirim - RO, 76850-000</p>
+                        </div>
                     </div>
                     <div class="accordion-item" data-lat="-10.374554528836622" data-lng="-64.80597021222648">
                         <button class="accordion-header">Nova Dimensão <i class="fa-solid fa-chevron-down"></i></button>
-                        <div class="accordion-content"><p>Av. Fortaleza, SN - Nova Dimensão, Nova Mamoré - RO, 76857-000</p></div>
+                        <div class="accordion-content">
+                            <p>Av. Fortaleza, SN - Nova Dimensão, Nova Mamoré - RO, 76857-000</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -235,8 +284,10 @@
             <div class="footer-col">
                 <img src="assets/images/logo.png" alt="Logo Link Net en blanco" class="footer-logo">
                 <div class="social-icons">
-                    <a href="https://www.facebook.com/linknettelecom" target="_blank" aria-label="Facebook de Link Net"><i class="fab fa-facebook-f"></i></a>
-                    <a href="https://www.instagram.com/linknet_oficial/" target="_blank" aria-label="Instagram de Link Net"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.facebook.com/linknettelecom" target="_blank"
+                        aria-label="Facebook de Link Net"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/linknet_oficial/" target="_blank"
+                        aria-label="Instagram de Link Net"><i class="fab fa-instagram"></i></a>
                 </div>
             </div>
             <div class="footer-col">
@@ -265,14 +316,13 @@
             </div>
         </div>
         <div class="copyright-bar">
-            <p>Copyright© 2024 Copyright© 2024 LinkNet Telecomunicações LTDA CNPJ: 10246104/0001-34 Av. 03 de Dezembro, 3000 União Brandeirantes -RO 76841-000.<br/> Todos os Direitos Reservados.</p>
+            <p>Copyright© 2024 LinkNet Telecomunicações LTDA CNPJ: 10246104/0001-34 Av. 03 de Dezembro,
+                3000 União Brandeirantes -RO 76841-000.<br /> Todos os Direitos Reservados.</p>
         </div>
     </footer>
 
     <script src="js/main.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDStqGvyvWFnG7EMeTIci2AtWw4n-qDyaM&callback=initMap&v=weekly" defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap&v=weekly" defer></script>
 </body>
+
 </html>
-
-
-
