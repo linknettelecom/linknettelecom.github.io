@@ -1610,3 +1610,98 @@ main {
         justify-content: center !important;
     }
 }
+
+/* ====== SAFE: por defecto, oculto (evita fugas en desktop) ====== */
+.extras-tabs,
+.extras-view {
+    display: none;
+}
+
+/* ====== SERVIÇOS ADICIONAIS — Navegación por pestañas (solo mobile) ====== */
+@media (max-width: 720px) {
+
+    /* Oculta la grilla original en mobile */
+    #servicos-adicionais .extras-grid {
+        display: none !important;
+    }
+
+    /* Barra de pestañas (sin scroll) */
+    .extras-tabs {
+        display: flex;
+        gap: 8px;
+        justify-content: space-between;
+        /* distribuye íconos, sin overflow */
+        align-items: end;
+        padding: 8px;
+        background: var(--cor-fundo);
+        border-bottom: 1px solid rgba(0, 0, 0, .08);
+        border-radius: 12px 12px 0 0;
+        box-shadow: var(--sombra-padrao);
+        margin-top: 12px;
+        overflow: visible;
+        /* sin scroll */
+    }
+
+    .extras-tab {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 10px 10px;
+        /* compacto */
+        border-radius: 10px 10px 0 0;
+        background: #f3f6fb;
+        border: 1px solid rgba(0, 0, 0, .06);
+        border-bottom: none;
+        font-family: var(--fonte-principal);
+        font-weight: 700;
+        color: var(--cor-azul-escuro);
+        cursor: pointer;
+        flex: 0 0 auto;
+        transition: background .2s ease, transform .2s ease;
+    }
+
+    .extras-tab i {
+        font-size: 18px;
+        line-height: 1;
+        color: #002366;
+    }
+
+    /* Ocultar títulos en pestañas inactivas: solo íconos */
+    .extras-tab span {
+        display: none;
+    }
+
+    /* En la activa, mostrar el título (pediste “solo la activa con texto”) */
+    .extras-tab[aria-selected="true"] {
+        background: #ffffff;
+        transform: translateY(1px);
+        box-shadow: 0 -2px 8px rgba(0, 0, 0, .06);
+    }
+
+    .extras-tab[aria-selected="true"] span {
+        display: inline;
+    }
+
+    /* Panel fusionado con pestaña activa */
+    .extras-view {
+        display: block;
+        background: #ffffff;
+        border: 1px solid rgba(0, 0, 0, .06);
+        border-top: none;
+        border-radius: 0 12px 12px 12px;
+        box-shadow: var(--sombra-padrao);
+        padding: 18px 16px;
+    }
+
+    /* Limpieza de estilos internos del card clonado */
+    .extras-view .extra-card {
+        margin: 0 !important;
+        padding: 10px 4px !important;
+        border: none !important;
+        box-shadow: none !important;
+    }
+
+    .extras-view .extra-card .bullet-list {
+        margin-top: 8px;
+    }
+}
