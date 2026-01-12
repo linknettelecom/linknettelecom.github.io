@@ -8,14 +8,27 @@
     <meta name="description"
         content="Conecte-se com a Link Net! Oferecemos internet fibra óptica de alta velocidade, TV e telemedicina em Rondônia. Conheça nossos planos!" />
     <link rel="stylesheet" href="css/styles.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Roboto:wght@400;500&display=swap"
-        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Roboto:wght@400;500&display=swap" rel="stylesheet" />
+
+    <style>
+        /* Garantir visibilidade do mapa */
+        #map {
+            width: 100%;
+            height: 500px;
+            border-radius: 8px;
+            background-color: #e5e3df;
+        }
+        .interactive-map-section { display: flex; flex-wrap: wrap; gap: 20px; padding: 40px 0; }
+        .locations-sidebar { flex: 1; min-width: 300px; }
+        .map-container-wrapper { flex: 2; min-width: 300px; }
+        .accordion-item { border: 1px solid #ddd; margin-bottom: 8px; border-radius: 4px; overflow: hidden; }
+        .accordion-header { width: 100%; text-align: left; padding: 15px; background: #f8f9fa; border: none; cursor: pointer; display: flex; justify-content: space-between; font-weight: 600; }
+        .accordion-content { padding: 0 15px; max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; background: #fff; }
+        .accordion-item.active .accordion-content { padding: 15px; max-height: 200px; }
+    </style>
 </head>
 
 <body>
@@ -23,317 +36,127 @@
     <header class="site-header">
         <div class="container header-inner">
             <a href="index.html" class="site-logo">
-                <img src="assets/images/logo.png" alt="Logo de Link Net Telecom">
+                <img src="assets/images/logo.png" alt="Logo Link Net">
             </a>
-
-            <nav class="main-nav" id="mainNav">
+            <nav class="main-nav">
                 <ul>
                     <li><a href="#inicio">Início</a></li>
-                    <li><a href="#sobre">Sobre nós</a></li>
                     <li><a href="#planos">Planos</a></li>
+                    <li><a href="#unidades">Unidades</a></li>
                     <li><a href="#contato">Contato</a></li>
                 </ul>
             </nav>
-
-            <a href="https://ixc.linknettelecom.net.br/central_assinante_web/login" target="_blank"
-                class="button-cta">Área do Cliente</a>
-
-            <button class="mobile-nav-toggle" aria-label="Abrir menu" id="mobileToggle">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </button>
+            <a href="https://ixc.linknettelecom.net.br/central_assinante_web/login" target="_blank" class="button-cta">Área do Cliente</a>
         </div>
     </header>
 
-    <main>
-        <section id="inicio" class="hero-section">
-            <div class="container">
-                <div class="hero-content">
-                    <h1>A melhor <span>INTERNET</span> fibra óptica de Rondônia</h1>
-                    <p><strong>Alta velocidade e estabilidade</strong> para você navegar, jogar e assistir sem
-                        interrupções.</p>
-
-                    <div class="hero-row">
-                        <div class="hero-price-box">
-                            <span class="price-label">Planos a partir de</span>
-                            <div class="price-value">
-                                <span class="currency">R$</span>
-                                <span class="amount">99,00</span>
-                                <span class="per">/mês</span>
-                            </div>
-                            <span class="support">Com suporte local</span>
-                        </div>
-                        <div class="hero-cta-group">
-                            <a href="#planos" class="button-hero">QUERO SER LINK NET</a>
-                        </div>
-                    </div>
-
-                    <div class="hero-badges">
-                        <span class="badge"><i class="fa-solid fa-tv"></i> LinkNet TV</span>
-                        <span class="badge"><i class="fa-solid fa-wifi"></i> Wi-Fi Premium</span>
-                        <span class="badge"><i class="fa-solid fa-rocket"></i> Instalação gratuita</span>
-                        <span class="badge"><i class="fa-solid fa-mobile-screen"></i> Apps integrados</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="servicos-adicionais" class="extras-elegantes animate-on-scroll">
-            <div class="container">
-                <header class="extras-header">
-                    <h2>Mais praticidade, mais Link Net</h2>
-                    <p>Recursos que elevam sua experiência: simples, confiáveis e sempre à mão.</p>
-                </header>
-
-                <div class="extras-grid">
-                    <!-- Card 1 -->
-                    <article class="extra-card">
-                        <div class="card-icon">
-                            <i class="fa-solid fa-user-doctor"></i>
-                        </div>
-                        <h3>Telemedicina</h3>
-                        <p>Atendimento médico remoto com segurança e praticidade.</p>
-                        <ul class="bullet-list">
-                            <li>Orientações e receitas digitais</li>
-                            <li>Histórico em um só lugar</li>
-                            <li>Plantão médico 24 horas</li>
-                        </ul>
-                    </article>
-
-                    <!-- Card 2 -->
-                    <article class="extra-card">
-                        <div class="card-icon">
-                            <i class="fa-solid fa-headset"></i>
-                        </div>
-                        <h3>Central do Assinante</h3>
-                        <p>2ª via, suporte, velocidade e gestão do plano.</p>
-                        <ul class="bullet-list">
-                            <li>Controle de faturas</li>
-                            <li>Teste de velocidade</li>
-                            <li>Chamados rápidos</li>
-                        </ul>
-                    </article>
-
-                    <!-- Card 3 -->
-                    <article class="extra-card">
-                        <div class="card-icon">
-                            <i class="fa-solid fa-tv"></i>
-                        </div>
-                        <h3>LinkNet TV</h3>
-                        <p>TV ao vivo, filmes e esportes onde você estiver.</p>
-                        <ul class="bullet-list">
-                            <li>Multi-tela</li>
-                            <li>Conteúdo sob demanda</li>
-                            <li>Interface simples</li>
-                        </ul>
-                    </article>
-
-                    <!-- Card 4 -->
-                    <article class="extra-card">
-                        <div class="card-icon">
-                            <i class="fa-solid fa-car-battery"></i>
-                        </div>
-                        <h3>Kit de Bateria</h3>
-                        <p>Energia acabou? Sem estresse. Internet ativa por horas.</p>
-                        <ul class="bullet-list">
-                            <li>Até 9 horas de autonomia</li>
-                            <li>Protege seus equipamentos</li>
-                            <li>Conexão sempre contínua</li>
-                        </ul>
-                    </article>
-                </div>
-            </div>
-        </section>
-
-
-        <section id="planos" class="pricing-section animate-on-scroll">
-            <div class="container">
-                <div class="section-header">
-                    <h6>Planos</h6>
-                    <h2>Escolha a Conexão Ideal para Você</h2>
-                    <p>Planos sob Medida: Escolha a Conexão que Acompanha Seu Ritmo.</p>
-                </div>
-                <div class="pricing-grid">
-                    <div class="pricing-card">
-                        <div class="card-icon"><i class="fa-solid fa-rocket"></i></div>
-                        <h3>Plano Start</h3>
-                        <div class="plan-speed">500 <span>Megas</span></div>
-                        <div class="card-price"><span class="amount">R$114,90</span><span class="frequency">/Mês</span>
-                        </div>
-                        <ul class="card-features">
-                            <li><i class="fa-solid fa-check"></i> Wi-fi Premium</li>
-                            <li><i class="fa-solid fa-check"></i> Instalação Grátis</li>
-                            <li><i class="fa-solid fa-check"></i> Suporte 24 horas</li>
-                            <li><i class="fa-solid fa-check"></i> LinkNet TV</li>
-                        </ul>
-                        <a href="https://api.whatsapp.com/send/?phone=556932368140" target="_blank"
-                            class="button-primary">Contratar Agora</a>
-                    </div>
-                    <div class="pricing-card recommended">
-                        <span class="recommended-badge">Recomendado</span>
-                        <div class="card-icon"><i class="fa-solid fa-star"></i></div>
-                        <h3>Plano Premium</h3>
-                        <div class="plan-speed">800 <span>Megas</span></div>
-                        <div class="card-price"><span class="amount">R$149,90</span><span class="frequency">/Mês</span>
-                        </div>
-                        <ul class="card-features">
-                            <li><i class="fa-solid fa-check"></i> Wi-fi Premium</li>
-                            <li><i class="fa-solid fa-check"></i> Instalação Grátis</li>
-                            <li><i class="fa-solid fa-check"></i> Suporte 24 horas</li>
-                            <li><i class="fa-solid fa-check"></i> LinkNet TV</li>
-                            <li><i class="fa-solid fa-check"></i> Telemedicina</li>
-                        </ul>
-                        <a href="https://api.whatsapp.com/send/?phone=556932368140" target="_blank"
-                            class="button-primary">Contratar Agora</a>
-                    </div>
-                    <div class="pricing-card">
-                        <div class="card-icon"><i class="fa-solid fa-gem"></i></div>
-                        <h3>Plano Supreme</h3>
-                        <div class="plan-speed">1000 <span>Megas</span></div>
-                        <div class="card-price"><span class="amount">R$179,90</span><span class="frequency">/Mês</span>
-                        </div>
-                        <ul class="card-features">
-                            <li><i class="fa-solid fa-check"></i> Wi-fi Premium</li>
-                            <li><i class="fa-solid fa-check"></i> Instalação Grátis</li>
-                            <li><i class="fa-solid fa-check"></i> Suporte 24 horas</li>
-                            <li><i class="fa-solid fa-check"></i> LinkNet TV</li>
-                            <li><i class="fa-solid fa-check"></i> Telemedicina</li>
-                        </ul>
-                        <a href="https://api.whatsapp.com/send/?phone=556932368140" target="_blank"
-                            class="button-primary">Contratar Agora</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="sobre" class="about-section animate-on-scroll">
-            <div class="container">
-                <div class="about-image">
-                    <img src="assets/images/about-image.jpg"
-                        alt="Atendente de suporte da Link Net trabalhando com headset">
-                </div>
-                <div class="about-content">
-                    <span class="eyebrow">Sobre a Link Net</span>
-                    <h2>Conexão sob Medida para Você</h2>
-                    <p class="lead">Na LinkNet, entendemos que cada cliente é único. Por isso, temos planos sob medida
-                        para
-                        diferentes perfis, todos com o compromisso de entregar velocidade e estabilidade em qualquer
-                        situação.</p>
-                    <ul class="advantages-list">
-                        <li><i class="fa-solid fa-check"></i> Suporte 24 horas</li>
-                        <li><i class="fa-solid fa-check"></i> Atendimento Rápido</li>
-                        <li><i class="fa-solid fa-check"></i> Alta Velocidade</li>
-                        <li><i class="fa-solid fa-check"></i> Acesso Telemedicina</li>
-                        <li><i class="fa-solid fa-check"></i> Conexão Estável</li>
-                        <li><i class="fa-solid fa-check"></i> Energia Extra</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
+    <main class="container">
         <section id="unidades" class="interactive-map-section">
             <div class="locations-sidebar">
-                <h2 class="animate-on-scroll">Nossas Unidades</h2>
-                <div class="accordion animate-on-scroll">
-                    <div class="accordion-item" data-lat="-8.75861490943112" data-lng="-63.901736050868585">
+                <h2>Nossas Unidades</h2>
+                <div class="accordion" id="unitAccordion">
+                    
+                    <div class="accordion-item" data-lat="-10.4388" data-lng="-62.4664">
+                        <button class="accordion-header">Jaru <i class="fa-solid fa-chevron-down"></i></button>
+                        <div class="accordion-content">
+                            <p>Av. Padre Adolpho Rohl, Centro - Jaru - RO, 76890-000</p>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item" data-lat="-8.7586149" data-lng="-63.901736">
                         <button class="accordion-header">Porto Velho <i class="fa-solid fa-chevron-down"></i></button>
                         <div class="accordion-content">
-                            <p>Av. Pinheiro Machado, 1257 - Olaria, Porto Velho - RO, 76801-247</p>
+                            <p>Av. Pinheiro Machado, 1257 - Olaria, Porto Velho - RO</p>
                         </div>
                     </div>
-                    <div class="accordion-item" data-lat="-10.430380" data-lng="-62.473627">
-                        <button class="accordion-header">Jaru <i
-                                class="fa-solid fa-chevron-down"></i></button>
+
+                    <div class="accordion-item" data-lat="-9.7104438" data-lng="-64.5316139">
+                        <button class="accordion-header">União Bandeirantes <i class="fa-solid fa-chevron-down"></i></button>
                         <div class="accordion-content">
-                            <p>Av. Padre Adolpho Rohl, 2525 - St. 5, Jaru - RO, 76890-000</p>
+                            <p>Av 3 de Dezembro - União Bandeirantes, Porto Velho - RO</p>
                         </div>
                     </div>
-                    <div class="accordion-item" data-lat="-9.710443818199323" data-lng="-64.53161394476314">
-                        <button class="accordion-header">União Bandeirantes <i
-                                class="fa-solid fa-chevron-down"></i></button>
-                        <div class="accordion-content">
-                            <p>Av 3 de Dezembro - União Bandeirantes, Porto Velho - RO, 76841-000</p>
-                        </div>
-                    </div>
-                    <div class="accordion-item" data-lat="-9.257549542880978" data-lng="-64.4087398966081">
+
+                    <div class="accordion-item" data-lat="-9.2575495" data-lng="-64.4087398">
                         <button class="accordion-header">Jaci Paraná <i class="fa-solid fa-chevron-down"></i></button>
                         <div class="accordion-content">
-                            <p>R. José Rodrigues, Centro - N 1530 - Jaci Paraná, Porto Velho - RO, 76840-000</p>
+                            <p>R. José Rodrigues, Centro - N 1530 - Jaci Paraná, Porto Velho - RO</p>
                         </div>
                     </div>
-                    <div class="accordion-item" data-lat="-10.414480862625098" data-lng="-65.33144535390771">
-                        <button class="accordion-header">Nova Mamoré <i class="fa-solid fa-chevron-down"></i></button>
-                        <div class="accordion-content">
-                            <p>Av. Dezidério Domingues Lopes, 3247 - Cidade Nova, Nova Mamoré - RO, 76857-000</p>
-                        </div>
-                    </div>
-                    <div class="accordion-item" data-lat="-10.780280005321504" data-lng="-65.33301796161155">
+
+                    <div class="accordion-item" data-lat="-10.7802800" data-lng="-65.3330179">
                         <button class="accordion-header">Guajará-Mirim <i class="fa-solid fa-chevron-down"></i></button>
                         <div class="accordion-content">
-                            <p>Av. 15 de Novembro, 2150 - Serraria, Guajará-Mirim - RO, 76850-000</p>
-                        </div>
-                    </div>
-                    <div class="accordion-item" data-lat="-10.374554528836622" data-lng="-64.80597021222648">
-                        <button class="accordion-header">Nova Dimensão <i class="fa-solid fa-chevron-down"></i></button>
-                        <div class="accordion-content">
-                            <p>Av. Fortaleza, SN - Nova Dimensão, Nova Mamoré - RO, 76857-000</p>
+                            <p>Av. 15 de Novembro, 2150 - Serraria, Guajará-Mirim - RO</p>
                         </div>
                     </div>
                 </div>
             </div>
-            <div id="map" class="map-container"></div>
+
+            <div class="map-container-wrapper">
+                <div id="map"></div>
+            </div>
         </section>
     </main>
 
-    <footer id="contato" class="site-footer">
-        <div class="footer-grid container">
-            <div class="footer-col">
-                <img src="assets/images/logo.png" alt="Logo Link Net en blanco" class="footer-logo">
-                <div class="social-icons">
-                    <a href="https://www.facebook.com/linknettelecom" target="_blank"
-                        aria-label="Facebook de Link Net"><i class="fab fa-facebook-f"></i></a>
-                    <a href="https://www.instagram.com/linknet_oficial/" target="_blank"
-                        aria-label="Instagram de Link Net"><i class="fab fa-instagram"></i></a>
-                </div>
-            </div>
-            <div class="footer-col">
-                <h4>Produtos</h4>
-                <ul>
-                    <li><a href="#servicos">Internet Fibra</a></li>
-                    <li><a href="#servicos">TV por Assinatura</a></li>
-                    <li><a href="#servicos">Telemedicina</a></li>
-                    <li><a href="#servicos">Kit de Bateria</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>Suporte</h4>
-                <ul>
-                    <li><a href="#">Contato</a></li>
-                    <li><a href="#">Contrato de Serviço</a></li>
-                    <li><a href="#">Políticas de Privacidade</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>Fale Conosco</h4>
-                <ul class="contact-info">
-                    <li><i class="fas fa-phone"></i> (69) 3236-8140</li>
-                    <li><i class="fas fa-envelope"></i> contato@linknettelecom.net.br</li>
-                </ul>
-            </div>
-        </div>
-        <div class="copyright-bar">
-            <p>Copyright© 2024 LinkNet Telecomunicações LTDA CNPJ: 10246104/0001-34 Av. 03 de Dezembro,
-                3000 União Brandeirantes -RO 76841-000.<br /> Todos os Direitos Reservados.</p>
-        </div>
-    </footer>
+    <script>
+        let map;
+        const markers = [];
 
-    <script src="js/main.js"></script>
+        function initMap() {
+            // Centralização focada em Rondônia
+            const centerRO = { lat: -9.8, lng: -63.5 };
+
+            map = new google.maps.Map(document.getElementById("map"), {
+                center: centerRO,
+                zoom: 7,
+                mapTypeControl: false,
+                streetViewControl: false
+            });
+
+            // Configuração do ÍCONE com a imagem da LinkNet
+            const linkNetIcon = {
+                url: "assets/images/logo.png", // Certifique-se que o caminho está correto
+                scaledSize: new google.maps.Size(50, 35), // Tamanho da logo no mapa
+                origin: new google.maps.Point(0, 0),
+                anchor: new google.maps.Point(25, 17)
+            };
+
+            const accordionItems = document.querySelectorAll('.accordion-item');
+
+            accordionItems.forEach(item => {
+                const lat = parseFloat(item.getAttribute('data-lat'));
+                const lng = parseFloat(item.getAttribute('data-lng'));
+                const pos = { lat, lng };
+                const title = item.querySelector('.accordion-header').innerText;
+
+                // Criar Marcador com a Logo para todas as cidades
+                const marker = new google.maps.Marker({
+                    position: pos,
+                    map: map,
+                    icon: linkNetIcon,
+                    title: title
+                });
+
+                // Evento: Clicar no item da lista lateral
+                item.addEventListener('click', () => {
+                    map.setCenter(pos);
+                    map.setZoom(15);
+                    
+                    // Resetar acordeões e ativar o selecionado
+                    accordionItems.forEach(i => i.classList.remove('active'));
+                    item.classList.add('active');
+                });
+
+                // Evento: Clicar no ícone da logo dentro do mapa
+                marker.addListener("click", () => {
+                    item.click(); // Dispara o clique no menu lateral
+                });
+            });
+        }
+    </script>
+
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD9byDhrlj8tbMK-XWL0zp7TuVyoi8n7QI&callback=initMap&v=weekly" defer></script>
+
 </body>
-
 </html>
-
-
-
-
