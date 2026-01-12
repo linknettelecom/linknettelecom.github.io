@@ -94,12 +94,10 @@ const locations = [
     { lat: -8.75861490943112, lng: -63.901736050868585, title: 'Porto Velho' },
     { lat: -9.710443818199323, lng: -64.53161394476314, title: 'União Bandeirantes' },
     { lat: -9.257549542880978, lng: -64.4087398966081, title: 'Jaci Paraná' },
+    { lat: -10.430380, lng: -62.473627, title: 'Jaru' },
     { lat: -10.414480862625098, lng: -65.33144535390771, title: 'Nova Mamoré' },
     { lat: -10.780280005321504, lng: -65.33301796161155, title: 'Guajará-Mirim' },
     { lat: -10.374554528836622, lng: -64.80597021222648, title: 'Nova Dimensão' },
-    { lat: -9.657384902426358, lng: -65.74021495576011, title: 'Vista Alegre do Abunã' },
-    { lat: -9.772504471159463, lng: -66.36477920486534, title: 'Extrema' },
-    { lat: -9.761585022875362, lng: -66.61735353248147, title: 'Nova California' }
 ];
 
 async function initMap() {
@@ -256,3 +254,4 @@ document.addEventListener('DOMContentLoaded', () => {
         if (e.matches) mountMobileUI(); else unmountMobileUI();
     });
 });
+
