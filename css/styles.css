@@ -1702,5 +1702,263 @@ main {
     }
 }
 
+/* ==========================================================================
+   Logos das unidades (sidebar do mapa)
+   ========================================================================== */
+.location-logo-small {
+    max-width: 120px;
+    display: block;
+    margin-bottom: 10px;
+    height: auto;
+}
 
+/* ==========================================================================
+   Botão Flutuante de WhatsApp
+   ========================================================================== */
+.whatsapp-float {
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    width: 60px;
+    height: 60px;
+    background: #25D366;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 32px;
+    text-decoration: none;
+    box-shadow: 0 4px 18px rgba(37, 211, 102, 0.45);
+    z-index: 998;
+    transition: transform 0.2s ease, background 0.2s ease;
+    animation: whatsappPulse 2.8s infinite;
+}
+
+.whatsapp-float:hover {
+    transform: scale(1.12);
+    background: #1ebe5a;
+    animation: none;
+}
+
+@keyframes whatsappPulse {
+    0%   { box-shadow: 0 4px 18px rgba(37, 211, 102, 0.45); }
+    50%  { box-shadow: 0 4px 28px rgba(37, 211, 102, 0.75); }
+    100% { box-shadow: 0 4px 18px rgba(37, 211, 102, 0.45); }
+}
+
+@media (max-width: 540px) {
+    .whatsapp-float {
+        bottom: 18px;
+        right: 18px;
+        width: 54px;
+        height: 54px;
+        font-size: 28px;
+    }
+}
+
+/* ==========================================================================
+   Modal de Captação de Lead
+   ========================================================================== */
+.lead-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.lead-modal.active {
+    display: flex;
+}
+
+.lead-modal-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.65);
+    backdrop-filter: blur(4px);
+}
+
+.lead-modal-box {
+    position: relative;
+    background: #fff;
+    border-radius: 20px;
+    padding: 40px;
+    width: 100%;
+    max-width: 480px;
+    box-shadow: 0 24px 60px rgba(0, 35, 102, 0.22);
+    animation: modalSlideIn 0.28s ease;
+    max-height: 92vh;
+    overflow-y: auto;
+}
+
+@keyframes modalSlideIn {
+    from { opacity: 0; transform: translateY(22px) scale(0.97); }
+    to   { opacity: 1; transform: translateY(0)    scale(1);    }
+}
+
+.lead-modal-close {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    color: var(--cor-texto-claro);
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: background 0.2s, color 0.2s;
+}
+
+.lead-modal-close:hover {
+    background: var(--cor-fundo-claro);
+    color: var(--cor-azul-escuro);
+}
+
+.lead-modal-header {
+    text-align: center;
+    margin-bottom: 28px;
+}
+
+.lead-modal-logo {
+    height: 34px;
+    width: auto;
+    margin-bottom: 14px;
+}
+
+.lead-modal-header h2 {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--cor-azul-escuro);
+    margin-bottom: 6px;
+}
+
+.lead-modal-header p {
+    font-size: 14px;
+    color: var(--cor-texto-claro);
+    margin: 0;
+}
+
+/* --- Campos do formulário --- */
+.lead-form .form-group {
+    margin-bottom: 16px;
+}
+
+.lead-form label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--cor-azul-escuro);
+    margin-bottom: 6px;
+    font-family: var(--fonte-principal);
+}
+
+.lead-form input[type="text"],
+.lead-form select {
+    width: 100%;
+    padding: 13px 16px;
+    border: 1.5px solid #dde3ef;
+    border-radius: 10px;
+    font-size: 15px;
+    font-family: var(--fonte-secundaria);
+    color: var(--cor-texto);
+    background: #fff;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    outline: none;
+    appearance: none;
+    -webkit-appearance: none;
+}
+
+.lead-form select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236c757d' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    padding-right: 40px;
+    cursor: pointer;
+}
+
+.lead-form input[type="text"]:focus,
+.lead-form select:focus {
+    border-color: var(--cor-azul-claro);
+    box-shadow: 0 0 0 3px rgba(61, 183, 228, 0.18);
+}
+
+.lead-form input.error,
+.lead-form select.error {
+    border-color: var(--cor-vermelho);
+    box-shadow: 0 0 0 3px rgba(228, 3, 46, 0.12);
+}
+
+.field-error {
+    display: block;
+    font-size: 12px;
+    color: var(--cor-vermelho);
+    margin-top: 4px;
+    min-height: 16px;
+}
+
+/* --- Botão de envio (verde WhatsApp) --- */
+.lead-submit-btn {
+    width: 100%;
+    padding: 15px;
+    background: #25D366;
+    color: #fff;
+    border: none;
+    border-radius: 50px;
+    font-size: 16px;
+    font-weight: 700;
+    font-family: var(--fonte-principal);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: background 0.2s, transform 0.15s;
+    margin-top: 10px;
+}
+
+.lead-submit-btn:hover {
+    background: #1ebe5a;
+    transform: translateY(-2px);
+}
+
+.lead-submit-btn i {
+    font-size: 20px;
+}
+
+/* --- Rodapé de privacidade --- */
+.lead-privacy {
+    text-align: center;
+    font-size: 11px;
+    color: var(--cor-texto-claro);
+    margin-top: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+/* --- Trava scroll do body quando modal aberto --- */
+body.modal-open {
+    overflow: hidden;
+}
+
+/* --- Responsivo --- */
+@media (max-width: 540px) {
+    .lead-modal-box {
+        padding: 28px 20px;
+        border-radius: 16px;
+    }
+
+    .lead-modal-header h2 {
+        font-size: 19px;
+    }
+}
 

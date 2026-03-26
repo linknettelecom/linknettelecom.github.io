@@ -74,12 +74,10 @@ document.addEventListener('DOMContentLoaded', function () {
                 content.style.maxHeight = content.scrollHeight + "px";
                 const lat = parseFloat(item.getAttribute('data-lat'));
                 const lng = parseFloat(item.getAttribute('data-lng'));
-                if (window.map) {
-                    map.setCenter({ lat, lng });
-                    map.setZoom(19);
-                    if (window.innerWidth > 992) {
-                        setTimeout(() => { map.panBy(-200, 0); }, 50);
-                    }
+                // Atualiza o iframe do mapa sem precisar de API key
+                const iframe = document.getElementById('mapIframe');
+                if (iframe && !isNaN(lat) && !isNaN(lng)) {
+                    iframe.src = `https://maps.google.com/maps?q=${lat},${lng}&z=16&output=embed&t=k`;
                 }
             }
         });
@@ -87,55 +85,9 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
-// ------- LÓGICA DE GOOGLE MAPS -------
-let map;
-
-const locations = [
-    { lat: -8.75861490943112, lng: -63.901736050868585, title: 'Porto Velho' },
-    { lat: -9.710443818199323, lng: -64.53161394476314, title: 'União Bandeirantes' },
-    { lat: -9.257549542880978, lng: -64.4087398966081, title: 'Jaci Paraná' },
-    { lat: -10.430380, lng: -62.473627, title: 'Jaru' },
-    { lat: -10.414480862625098, lng: -65.33144535390771, title: 'Nova Mamoré' },
-    { lat: -10.780280005321504, lng: -65.33301796161155, title: 'Guajará-Mirim' },
-    { lat: -10.374554528836622, lng: -64.80597021222648, title: 'Nova Dimensão' },
-];
-
-async function initMap() {
-    const initialPosition = { lat: -9.76, lng: -64.90 };
-
-    // Note: O 'mapStyle' antigo foi removido das opções abaixo 
-    // porque estilos personalizados não se aplicam ao modo Satélite.
-
-    map = new google.maps.Map(document.getElementById("map"), {
-        zoom: 8,
-        center: initialPosition,
-        disableDefaultUI: true,
-        zoomControl: true,
-        // --- AS DUAS LINHAS ABAIXO ATIVAM O SATÉLITE ---
-        mapTypeId: 'satellite', 
-        heading: 0,
-        tilt: 0 // Garante que o mapa fique plano (sem visão 3D/inclinação)
-    });
-
-    locations.forEach(location => {
-        new google.maps.Marker({
-            position: { lat: location.lat, lng: location.lng },
-            map: map,
-            icon: {
-                url: 'assets/images/logo-completo.png',
-                scaledSize: new google.maps.Size(90, 28),
-                anchor: new google.maps.Point(45, 28)
-            },
-            label: {
-                text: location.title,
-                color: 'white',
-                fontWeight: 'bold',
-                fontSize: '12px',
-                className: 'map-marker-label'
-            }
-        });
-    });
-}
+// ------- MAPA -------
+// O mapa agora usa iframe embed do Google Maps (sem necessidade de API key).
+// A lógica de atualização do mapa está no listener do acordeão acima.
 
 document.addEventListener('DOMContentLoaded', () => {
     const MOBILE_QUERY = '(max-width: 720px)';
