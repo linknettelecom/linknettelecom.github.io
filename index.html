@@ -401,64 +401,86 @@
     </a>
 
     <!-- =====================================================
-         Modal de Captação de Lead
+         Modal de Captação de Lead — Multi-step
          ===================================================== -->
-    <div id="leadModal" class="lead-modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div id="leadModal" class="lead-modal" role="dialog" aria-modal="true" aria-labelledby="leadStepTitle">
         <div class="lead-modal-overlay" id="modalOverlay"></div>
         <div class="lead-modal-box">
+
+            <!-- Barra de progresso -->
+            <div class="lead-progress-track">
+                <div class="lead-progress-fill" id="leadProgressFill"></div>
+            </div>
+
+            <!-- Botão fechar -->
             <button class="lead-modal-close" id="modalClose" aria-label="Fechar formulário">
                 <i class="fa-solid fa-xmark"></i>
             </button>
-            <div class="lead-modal-header">
-                <img src="assets/images/logo.png" alt="LinkNet" class="lead-modal-logo">
-                <h2 id="modalTitle">Fale com um especialista</h2>
-                <p>Preencha os dados abaixo e entraremos em contato pelo WhatsApp.</p>
-            </div>
-            <form id="leadForm" class="lead-form" novalidate>
-                <!-- Campos ocultos: plano clicado + parâmetros de rastreamento -->
-                <input type="hidden" id="leadPlan"        name="plano"        value="">
-                <input type="hidden" id="leadGclid"       name="gclid"        value="">
-                <input type="hidden" id="leadUtmSource"   name="utm_source"   value="">
-                <input type="hidden" id="leadUtmMedium"   name="utm_medium"   value="">
-                <input type="hidden" id="leadUtmCampaign" name="utm_campaign" value="">
-                <input type="hidden" id="leadUtmContent"  name="utm_content"  value="">
-                <input type="hidden" id="leadUtmTerm"     name="utm_term"     value="">
 
-                <div class="form-group">
-                    <label for="leadName">Seu nome completo *</label>
-                    <input type="text" id="leadName" name="nome"
-                        placeholder="Ex: João Silva" required autocomplete="name">
+            <!-- Logo -->
+            <div class="lead-modal-logo-wrap">
+                <img src="assets/images/logo.png" alt="LinkNet" class="lead-modal-logo">
+            </div>
+
+            <!-- ── STEP 1: Nome ── -->
+            <div class="lead-step active" id="leadStep1">
+                <h2 class="lead-step-title" id="leadStepTitle">Olá! Como podemos te chamar?</h2>
+                <div class="lead-field-wrap">
+                    <input type="text" id="leadName" class="lead-input"
+                        placeholder="Seu nome completo"
+                        autocomplete="name" autocapitalize="words">
                     <span class="field-error" id="nameError"></span>
                 </div>
+                <button class="lead-next-btn" id="step1Next">
+                    Próximo <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </div>
 
-                <div class="form-group">
-                    <label for="leadCity">Cidade / Bairro onde mora *</label>
-                    <input type="text" id="leadCity" name="cidade"
-                        placeholder="Ex: Porto Velho – Olaria" required autocomplete="address-level2">
+            <!-- ── STEP 2: Intenção ── -->
+            <div class="lead-step" id="leadStep2">
+                <button class="lead-back-btn" id="step2Back" aria-label="Voltar">
+                    <i class="fa-solid fa-arrow-left"></i> Voltar
+                </button>
+                <h2 class="lead-step-title">O que você procura hoje?</h2>
+                <p class="lead-step-sub">Selecione uma opção</p>
+                <div class="lead-options">
+                    <button class="lead-option" data-value="Internet Residencial">
+                        <i class="fa-solid fa-house-signal"></i>
+                        <span>Internet Residencial</span>
+                    </button>
+                    <button class="lead-option" data-value="Internet Empresarial">
+                        <i class="fa-solid fa-building"></i>
+                        <span>Internet Empresarial</span>
+                    </button>
+                    <button class="lead-option" data-value="Quero trocar de operadora">
+                        <i class="fa-solid fa-rotate"></i>
+                        <span>Quero trocar de operadora</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- ── STEP 3: Região ── -->
+            <div class="lead-step" id="leadStep3">
+                <button class="lead-back-btn" id="step3Back" aria-label="Voltar">
+                    <i class="fa-solid fa-arrow-left"></i> Voltar
+                </button>
+                <h2 class="lead-step-title">Em que região você mora?</h2>
+                <p class="lead-step-sub">Ex: Porto Velho, Jaci Paraná, Jaru…</p>
+                <div class="lead-field-wrap">
+                    <input type="text" id="leadCity" class="lead-input"
+                        placeholder="Sua cidade ou bairro"
+                        autocomplete="address-level2" autocapitalize="words">
                     <span class="field-error" id="cityError"></span>
                 </div>
-
-                <div class="form-group">
-                    <label for="leadIntent">O que você precisa? *</label>
-                    <select id="leadIntent" name="intencao" required>
-                        <option value="" disabled selected>Selecione uma opção</option>
-                        <option value="Quero contratar um plano">Quero contratar um plano</option>
-                        <option value="Quero migrar de outra operadora">Quero migrar de outra operadora</option>
-                        <option value="Quero saber mais sobre os planos">Quero saber mais sobre os planos</option>
-                        <option value="Já sou cliente e quero atualizar meu plano">Já sou cliente e quero atualizar meu plano</option>
-                    </select>
-                    <span class="field-error" id="intentError"></span>
-                </div>
-
-                <button type="submit" class="lead-submit-btn">
-                    <i class="fa-brands fa-whatsapp"></i> Falar no WhatsApp
+                <button class="lead-submit-btn" id="step3Submit">
+                    <i class="fa-brands fa-whatsapp"></i> Falar com a equipe de atendimento
                 </button>
-
                 <p class="lead-privacy">
                     <i class="fa-solid fa-lock"></i>
                     Seus dados são usados apenas para entrar em contato com você.
                 </p>
-            </form>
+            </div>
+
         </div>
     </div>
 

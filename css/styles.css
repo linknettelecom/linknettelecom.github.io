@@ -1758,8 +1758,10 @@ main {
 }
 
 /* ==========================================================================
-   Modal de Captação de Lead
+   Modal de Captação de Lead — Multi-step
    ========================================================================== */
+
+/* --- Estrutura base --- */
 .lead-modal {
     display: none;
     position: fixed;
@@ -1785,20 +1787,42 @@ main {
     position: relative;
     background: #fff;
     border-radius: 20px;
-    padding: 40px;
+    padding: 36px 40px 40px;
     width: 100%;
-    max-width: 480px;
+    max-width: 460px;
     box-shadow: 0 24px 60px rgba(0, 35, 102, 0.22);
     animation: modalSlideIn 0.28s ease;
     max-height: 92vh;
     overflow-y: auto;
+    overflow-x: hidden;
 }
 
 @keyframes modalSlideIn {
     from { opacity: 0; transform: translateY(22px) scale(0.97); }
-    to   { opacity: 1; transform: translateY(0)    scale(1);    }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
 }
 
+/* --- Barra de progresso --- */
+.lead-progress-track {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: #eef0f6;
+    border-radius: 20px 20px 0 0;
+    overflow: hidden;
+}
+
+.lead-progress-fill {
+    height: 100%;
+    background: var(--cor-azul-claro);
+    border-radius: 20px;
+    transition: width 0.4s ease;
+    width: 33.33%;
+}
+
+/* --- Fechar --- */
 .lead-modal-close {
     position: absolute;
     top: 14px;
@@ -1806,15 +1830,16 @@ main {
     background: none;
     border: none;
     cursor: pointer;
-    font-size: 18px;
+    font-size: 17px;
     color: var(--cor-texto-claro);
-    width: 36px;
-    height: 36px;
+    width: 34px;
+    height: 34px;
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 50%;
     transition: background 0.2s, color 0.2s;
+    z-index: 1;
 }
 
 .lead-modal-close:hover {
@@ -1822,76 +1847,91 @@ main {
     color: var(--cor-azul-escuro);
 }
 
-.lead-modal-header {
+/* --- Logo --- */
+.lead-modal-logo-wrap {
     text-align: center;
-    margin-bottom: 28px;
+    margin-bottom: 20px;
 }
 
 .lead-modal-logo {
-    height: 34px;
+    height: 30px;
     width: auto;
-    margin-bottom: 14px;
 }
 
-.lead-modal-header h2 {
-    font-size: 22px;
+/* --- Steps --- */
+.lead-step {
+    display: none;
+    animation: stepFadeIn 0.25s ease;
+}
+
+.lead-step.active {
+    display: block;
+}
+
+@keyframes stepFadeIn {
+    from { opacity: 0; transform: translateX(16px); }
+    to   { opacity: 1; transform: translateX(0); }
+}
+
+.lead-step-title {
+    font-size: 21px;
     font-weight: 700;
     color: var(--cor-azul-escuro);
     margin-bottom: 6px;
-}
-
-.lead-modal-header p {
-    font-size: 14px;
-    color: var(--cor-texto-claro);
-    margin: 0;
-}
-
-/* --- Campos do formulário --- */
-.lead-form .form-group {
-    margin-bottom: 16px;
-}
-
-.lead-form label {
-    display: block;
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--cor-azul-escuro);
-    margin-bottom: 6px;
+    line-height: 1.25;
     font-family: var(--fonte-principal);
 }
 
-.lead-form input[type="text"],
-.lead-form select {
+.lead-step-sub {
+    font-size: 14px;
+    color: var(--cor-texto-claro);
+    margin-bottom: 20px;
+}
+
+/* --- Botão voltar --- */
+.lead-back-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 13px;
+    color: var(--cor-texto-claro);
+    padding: 0;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--fonte-secundaria);
+    transition: color 0.2s;
+}
+
+.lead-back-btn:hover {
+    color: var(--cor-azul-escuro);
+}
+
+/* --- Campo de texto --- */
+.lead-field-wrap {
+    margin-bottom: 18px;
+}
+
+.lead-input {
     width: 100%;
-    padding: 13px 16px;
+    padding: 14px 16px;
     border: 1.5px solid #dde3ef;
-    border-radius: 10px;
-    font-size: 15px;
+    border-radius: 12px;
+    font-size: 16px;
     font-family: var(--fonte-secundaria);
     color: var(--cor-texto);
     background: #fff;
     transition: border-color 0.2s, box-shadow 0.2s;
     outline: none;
-    appearance: none;
-    -webkit-appearance: none;
 }
 
-.lead-form select {
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236c757d' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: right 14px center;
-    padding-right: 40px;
-    cursor: pointer;
-}
-
-.lead-form input[type="text"]:focus,
-.lead-form select:focus {
+.lead-input:focus {
     border-color: var(--cor-azul-claro);
     box-shadow: 0 0 0 3px rgba(61, 183, 228, 0.18);
 }
 
-.lead-form input.error,
-.lead-form select.error {
+.lead-input.error {
     border-color: var(--cor-vermelho);
     box-shadow: 0 0 0 3px rgba(228, 3, 46, 0.12);
 }
@@ -1900,8 +1940,76 @@ main {
     display: block;
     font-size: 12px;
     color: var(--cor-vermelho);
-    margin-top: 4px;
+    margin-top: 5px;
     min-height: 16px;
+}
+
+/* --- Cards de opção (Step 2) --- */
+.lead-options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 4px;
+}
+
+.lead-option {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    width: 100%;
+    padding: 15px 18px;
+    background: #f8f9fc;
+    border: 1.5px solid #e8ecf4;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--cor-azul-escuro);
+    font-family: var(--fonte-principal);
+    text-align: left;
+    transition: background 0.18s, border-color 0.18s, transform 0.15s;
+}
+
+.lead-option i {
+    font-size: 20px;
+    color: var(--cor-azul-claro);
+    width: 24px;
+    text-align: center;
+    flex-shrink: 0;
+}
+
+.lead-option:hover {
+    background: #eef6fb;
+    border-color: var(--cor-azul-claro);
+    transform: translateY(-1px);
+}
+
+.lead-option:active {
+    transform: translateY(0);
+}
+
+/* --- Botão próximo --- */
+.lead-next-btn {
+    width: 100%;
+    padding: 14px;
+    background: var(--cor-azul-escuro);
+    color: #fff;
+    border: none;
+    border-radius: 50px;
+    font-size: 15px;
+    font-weight: 700;
+    font-family: var(--fonte-principal);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: background 0.2s, transform 0.15s;
+}
+
+.lead-next-btn:hover {
+    background: #00347a;
+    transform: translateY(-2px);
 }
 
 /* --- Botão de envio (verde WhatsApp) --- */
@@ -1953,12 +2061,17 @@ body.modal-open {
 /* --- Responsivo --- */
 @media (max-width: 540px) {
     .lead-modal-box {
-        padding: 28px 20px;
+        padding: 28px 20px 32px;
         border-radius: 16px;
     }
 
-    .lead-modal-header h2 {
-        font-size: 19px;
+    .lead-step-title {
+        font-size: 18px;
+    }
+
+    .lead-option {
+        padding: 13px 14px;
+        font-size: 14px;
     }
 }
 
