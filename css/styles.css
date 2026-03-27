@@ -1087,11 +1087,59 @@ main {
     .about-section .container {
         flex-direction: column-reverse;
     }
+
+    /* Mapa: empilha sidebar acima do iframe em mobile */
+    .interactive-map-section {
+        flex-direction: column;
+    }
+
+    .locations-sidebar {
+        flex-basis: auto;
+        width: 100%;
+        height: auto;
+        max-height: 55vh;
+        padding: 24px 20px;
+    }
+
+    .map-container {
+        width: 100%;
+        height: 56vw;
+        min-height: 240px;
+        max-height: 340px;
+    }
+
+    .map-container iframe {
+        width: 100%;
+        height: 100%;
+    }
 }
 
 /* ==========================================================================
    Fin del archivo
    ========================================================================== */
+
+/* Hero row: em telas muito pequenas (< 480px) empilha preço + botão */
+@media (max-width: 480px) {
+    .hero-row {
+        flex-direction: column;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .hero-price-box {
+        max-width: 100%;
+        width: 100%;
+        text-align: center;
+    }
+
+    .button-hero {
+        max-width: 100%;
+        width: 100%;
+        text-align: center;
+        font-size: 14px;
+    }
+}
 
 /* ===== Hotfix: ABOUT visibility + full-height, and Planos ribbon cleanup (2025-10-09) == */
 
