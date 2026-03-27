@@ -1064,7 +1064,24 @@ main {
     }
 
     .pricing-grid {
-        gap: 18px;
+        flex-direction: column;
+        align-items: center;
+        gap: 16px;
+    }
+
+    .pricing-card {
+        width: 100%;
+        max-width: 400px;
+        flex: none;
+    }
+
+    /* Remove scale nos cards recomendados — fica desalinhado empilhado */
+    .pricing-card.recommended {
+        transform: none !important;
+    }
+
+    .pricing-card.recommended:hover {
+        transform: translateY(-3px) !important;
     }
 
     .about-section .container {
