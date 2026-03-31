@@ -228,17 +228,38 @@
                 'https://wxhbzdmmekeditxerqhd.supabase.co',
                 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Ind4aGJ6ZG1tZWtlZGl0eGVycWhkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ2NDEzNjYsImV4cCI6MjA5MDIxNzM2Nn0.xq8jVwIjDfZjIx_QsHx2rAdJJmGl236JqYRVr4xbDHg'
             );
+
+            // Resolver source/medium quando não há UTMs explícitas
+            var rawSource   = sessionStorage.getItem('ln_lead_utm_source') || '';
+            var rawMedium   = sessionStorage.getItem('ln_lead_utm_medium') || '';
+            var rawGclid    = sessionStorage.getItem('ln_lead_gclid')      || '';
+            var finalSource, finalMedium;
+
+            if (rawSource) {
+                // UTMs presentes: usar como vieram
+                finalSource = rawSource;
+                finalMedium = rawMedium || null;
+            } else if (rawGclid) {
+                // GCLID sem UTMs = Google Ads com auto-tagging
+                finalSource = 'google';
+                finalMedium = 'cpc';
+            } else {
+                // Sem nenhum parâmetro = acesso direto
+                finalSource = 'direct';
+                finalMedium = null;
+            }
+
             sb.from('leads').insert([{
                 nome:         nome,
                 intencao:     intencao,
                 regiao:       regiao,
                 plano:        plano,
-                utm_source:   sessionStorage.getItem('ln_lead_utm_source')   || null,
-                utm_medium:   sessionStorage.getItem('ln_lead_utm_medium')   || null,
+                utm_source:   finalSource,
+                utm_medium:   finalMedium,
                 utm_campaign: sessionStorage.getItem('ln_lead_utm_campaign') || null,
                 utm_term:     sessionStorage.getItem('ln_lead_utm_term')     || null,
                 utm_content:  sessionStorage.getItem('ln_lead_utm_content')  || null,
-                gclid:        sessionStorage.getItem('ln_lead_gclid')        || null
+                gclid:        rawGclid || null
             }]).then(function (res) {
                 if (res.error) console.warn('[Supabase] Erro ao salvar lead:', res.error.message);
             });
