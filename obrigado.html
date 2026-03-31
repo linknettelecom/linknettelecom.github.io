@@ -23,6 +23,9 @@
         integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+    <!-- Supabase JS -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
     <style>
         :root {
             --azul:    #002366;
@@ -219,8 +222,30 @@
         window.dataLayer = window.dataLayer || [];
         window.dataLayer.push({ event: 'lead_conversion' });
 
-        // TODO: Salvar lead no Supabase (implementar após cliente criar conta)
-        // salvarLeadSupabase({ nome, intencao, regiao, plano, ...utms });
+        // ── Salvar lead no Supabase ──────────────────────────────
+        try {
+            var sb = supabase.createClient(
+                'https://wxhbzdmmekeditxerqhd.supabase.co',
+                'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Ind4aGJ6ZG1tZWtlZGl0eGVycWhkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ2NDEzNjYsImV4cCI6MjA5MDIxNzM2Nn0.xq8jVwIjDfZjIx_QsHx2rAdJJmGl236JqYRVr4xbDHg'
+            );
+            sb.from('leads').insert([{
+                nome:         nome,
+                intencao:     intencao,
+                regiao:       regiao,
+                plano:        plano,
+                utm_source:   sessionStorage.getItem('ln_lead_utm_source')   || null,
+                utm_medium:   sessionStorage.getItem('ln_lead_utm_medium')   || null,
+                utm_campaign: sessionStorage.getItem('ln_lead_utm_campaign') || null,
+                utm_term:     sessionStorage.getItem('ln_lead_utm_term')     || null,
+                utm_content:  sessionStorage.getItem('ln_lead_utm_content')  || null,
+                gclid:        sessionStorage.getItem('ln_lead_gclid')        || null
+            }]).then(function (res) {
+                if (res.error) console.warn('[Supabase] Erro ao salvar lead:', res.error.message);
+            });
+        } catch (e) {
+            console.warn('[Supabase] Falha na inicialização:', e);
+        }
+        // ────────────────────────────────────────────────────────
 
         // Auto-abrir o WhatsApp após 1.8s (melhora experiência mobile)
         setTimeout(function () {
