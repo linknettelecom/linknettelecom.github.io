@@ -167,34 +167,42 @@
     <!-- End Google Tag Manager (noscript) -->
 
     <div class="card">
-        <img src="assets/images/logo.png" alt="LinkNet" class="card-logo">
+    <img src="assets/images/logo.png" alt="LinkNet" class="card-logo">
 
-        <div class="check-circle">
-            <i class="fa-solid fa-check"></i>
-        </div>
-
-        <h1>Recebemos seu contato!</h1>
-        <p class="subtitle">
-            Clique no botão abaixo e nossa equipe vai te atender<br>
-            agora mesmo pelo WhatsApp. 😊
-        </p>
-
-        <!-- Preview da mensagem que será enviada -->
-        <div class="preview-box">
-            <div class="preview-label">Sua mensagem para a LinkNet:</div>
-            <p id="msgPreview">Carregando…</p>
-        </div>
-
-        <a href="#" id="btnWhatsapp" class="btn-whatsapp" target="_blank" rel="noopener noreferrer">
-            <i class="fa-brands fa-whatsapp"></i> Falar com a equipe de atendimento
-        </a>
-
-        <a href="/" class="back-link">← Voltar para o site</a>
+    <div class="check-circle">
+        <i class="fa-solid fa-check"></i>
     </div>
 
-    <script>
-    (function () {
-        var WHATSAPP = '556932368140';
+    <h1>Recebemos seu contato!</h1>
+    <p class="subtitle">
+        Clique no botão abaixo e nossa equipe vai te atender<br>
+        agora mesmo pelo WhatsApp. 😊
+    </p>
+
+    <a href="#" id="btnWhatsapp" class="btn-whatsapp" target="_blank" rel="noopener noreferrer">
+        <i class="fa-brands fa-whatsapp"></i> Falar com a equipe de atendimento
+    </a>
+
+    <a href="/" class="back-link">← Voltar para o site</a>
+</div>
+
+<script>
+(function () {
+    var WHATSAPP = '556932368140';
+    
+    // Escreva aqui a mensagem que você quer que apareça no WhatsApp do cliente
+    var MENSAGEM = 'Olá, equipe LinkNet! Gostaria de um atendimento.';
+
+    // O comando encodeURIComponent transforma os espaços e acentos em um formato válido para links de internet
+    var textoCodificado = encodeURIComponent(MENSAGEM);
+
+    // Junta tudo para criar o link final
+    var linkFinal = 'https://wa.me/' + WHATSAPP + '?text=' + textoCodificado;
+
+    // Pega o botão no HTML e insere o link nele
+    document.getElementById('btnWhatsapp').href = linkFinal;
+})();
+</script>
 
         // Ler dados do lead salvos pelo form.js
         var nome     = sessionStorage.getItem('ln_lead_nome')     || '';
