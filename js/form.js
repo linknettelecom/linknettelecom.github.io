@@ -215,26 +215,83 @@
     }
 
     // =========================================================
-    // Envio — salva na sessionStorage e redireciona para /obrigado
+    // Envio — Dispara GTM, Salva no Supabase e Abre WhatsApp
     // =========================================================
     function enviar() {
         var p = getParametros();
+        var step3Submit = document.getElementById('step3Submit');
 
-        // Salvar dados do lead na sessão (lidos pela obrigado.html)
-        sessionStorage.setItem('ln_lead_nome',     dados.nome);
-        sessionStorage.setItem('ln_lead_intencao', dados.intencao);
-        sessionStorage.setItem('ln_lead_regiao',   dados.regiao);
-        sessionStorage.setItem('ln_lead_plano',    dados.plano);
-        sessionStorage.setItem('ln_lead_gclid',    p.gclid);
-        sessionStorage.setItem('ln_lead_utm_source',   p.utm_source);
-        sessionStorage.setItem('ln_lead_utm_medium',   p.utm_medium);
-        sessionStorage.setItem('ln_lead_utm_campaign', p.utm_campaign);
-        sessionStorage.setItem('ln_lead_utm_content',  p.utm_content);
-        sessionStorage.setItem('ln_lead_utm_term',     p.utm_term);
-        sessionStorage.setItem('ln_lead_ts', new Date().toISOString());
+        // Muda o texto do botão para dar um feedback visual ao cliente de que está carregando
+        if (step3Submit) {
+            step3Submit.textContent = 'Iniciando atendimento...';
+            step3Submit.disabled = true;
+        }
 
-        fecharModal();
-        window.location.href = '/obrigado.html';
+        // 1. Monta a mensagem e o link do WhatsApp
+        var WHATSAPP = '556932368140';
+        var msg = 'Olá, vi seu anúncio no Google. Me chamo ' + (dados.nome || 'um interessado');
+        msg += ', estou buscando por ' + (dados.intencao || 'internet');
+        msg += ' e moro em ' + (dados.regiao || 'Rondônia') + '.';
+        if (dados.plano) msg += '\n\nPlano de interesse: ' + dados.plano;
+
+        var url = 'https://api.whatsapp.com/send/?phone=' + WHATSAPP + '&text=' + encodeURIComponent(msg);
+
+        // 2. Dispara evento de conversão via GTM
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({ event: 'lead_conversion' });
+
+        // 3. Salva os dados no banco Supabase
+        try {
+            var sb = supabase.createClient(
+                'https://wxhbzdmmekeditxerqhd.supabase.co',
+                'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Ind4aGJ6ZG1tZWtlZGl0eGVycWhkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ2NDEzNjYsImV4cCI6MjA5MDIxNzM2Nn0.xq8jVwIjDfZjIx_QsHx2rAdJJmGl236JqYRVr4xbDHg'
+            );
+
+            var rawSource   = p.utm_source || '';
+            var rawMedium   = p.utm_medium || '';
+            var rawGclid    = p.gclid || '';
+            var finalSource, finalMedium;
+
+            if (rawSource) {
+                finalSource = rawSource;
+                finalMedium = rawMedium || null;
+            } else if (rawGclid) {
+                finalSource = 'google';
+                finalMedium = 'cpc';
+            } else {
+                finalSource = 'direct';
+                finalMedium = null;
+            }
+
+            sb.from('leads').insert([{
+                nome:         dados.nome,
+                intencao:     dados.intencao,
+                regiao:       dados.regiao,
+                plano:        dados.plano,
+                utm_source:   finalSource,
+                utm_medium:   finalMedium,
+                utm_campaign: p.utm_campaign || null,
+                utm_term:     p.utm_term || null,
+                utm_content:  p.utm_content || null,
+                gclid:        rawGclid || null
+            }]).then(function (res) {
+                if (res.error) console.warn('[Supabase] Erro ao salvar lead:', res.error.message);
+            });
+        } catch (e) {
+            console.warn('[Supabase] Falha na inicialização do Supabase:', e);
+        }
+
+        // 4. Aguarda pouco mais de 1 segundo (para o GTM registrar) e abre o WhatsApp
+        setTimeout(function () {
+            window.open(url, '_blank', 'noopener,noreferrer');
+            fecharModal();
+            
+            // Restaura o botão caso o cliente volte para a aba do site
+            if (step3Submit) {
+                step3Submit.textContent = 'Enviar';
+                step3Submit.disabled = false;
+            }
+        }, 1200);
     }
 
     // =========================================================
