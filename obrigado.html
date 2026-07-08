@@ -189,101 +189,80 @@
 <script>
 (function () {
     var WHATSAPP = '556932368140';
-    
-    // Escreva aqui a mensagem que você quer que apareça no WhatsApp do cliente
-    var MENSAGEM = 'Olá, equipe LinkNet! Gostaria de um atendimento.';
 
-    // O comando encodeURIComponent transforma os espaços e acentos em um formato válido para links de internet
-    var textoCodificado = encodeURIComponent(MENSAGEM);
+    // 1. Ler dados do lead salvos pelo form.js
+    var nome     = sessionStorage.getItem('ln_lead_nome')     || '';
+    var intencao = sessionStorage.getItem('ln_lead_intencao') || '';
+    var regiao   = sessionStorage.getItem('ln_lead_regiao')   || '';
+    var plano    = sessionStorage.getItem('ln_lead_plano')    || '';
 
-    // Junta tudo para criar o link final
-    var linkFinal = 'https://wa.me/' + WHATSAPP + '?text=' + textoCodificado;
+    // 2. Montar mensagem para o WhatsApp com os dados do cliente
+    var msg = 'Olá, vi seu anúncio no Google. Me chamo ' + (nome || 'um interessado');
+    msg += ', estou buscando por ' + (intencao || 'internet');
+    msg += ' e moro em ' + (regiao || 'Rondônia') + '.';
+    if (plano) msg += '\n\nPlano de interesse: ' + plano;
 
-    // Pega o botão no HTML e insere o link nele
-    document.getElementById('btnWhatsapp').href = linkFinal;
+    // 3. Montar link do WhatsApp e colocar direto no botão (Sem Preview)
+    var url = 'https://api.whatsapp.com/send/?phone=' + WHATSAPP + '&text=' + encodeURIComponent(msg);
+    var btnWa = document.getElementById('btnWhatsapp');
+    if (btnWa) {
+        btnWa.href = url;
+    }
+
+    // 4. Disparar evento de conversão via GTM
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({ event: 'lead_conversion' });
+
+    // 5. ── Salvar lead no Supabase ──────────────────────────────
+    try {
+        var sb = supabase.createClient(
+            'https://wxhbzdmmekeditxerqhd.supabase.co',
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Ind4aGJ6ZG1tZWtlZGl0eGVycWhkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ2NDEzNjYsImV4cCI6MjA5MDIxNzM2Nn0.xq8jVwIjDfZjIx_QsHx2rAdJJmGl236JqYRVr4xbDHg'
+        );
+
+        var rawSource   = sessionStorage.getItem('ln_lead_utm_source') || '';
+        var rawMedium   = sessionStorage.getItem('ln_lead_utm_medium') || '';
+        var rawGclid    = sessionStorage.getItem('ln_lead_gclid')      || '';
+        var finalSource, finalMedium;
+
+        if (rawSource) {
+            finalSource = rawSource;
+            finalMedium = rawMedium || null;
+        } else if (rawGclid) {
+            finalSource = 'google';
+            finalMedium = 'cpc';
+        } else {
+            finalSource = 'direct';
+            finalMedium = null;
+        }
+
+        sb.from('leads').insert([{
+            nome:         nome,
+            intencao:     intencao,
+            regiao:       regiao,
+            plano:        plano,
+            utm_source:   finalSource,
+            utm_medium:   finalMedium,
+            utm_campaign: sessionStorage.getItem('ln_lead_utm_campaign') || null,
+            utm_term:     sessionStorage.getItem('ln_lead_utm_term')     || null,
+            utm_content:  sessionStorage.getItem('ln_lead_utm_content')  || null,
+            gclid:        rawGclid || null
+        }]).then(function (res) {
+            if (res.error) console.warn('[Supabase] Erro ao salvar lead:', res.error.message);
+        });
+    } catch (e) {
+        console.warn('[Supabase] Falha na inicialização:', e);
+    }
+    // ────────────────────────────────────────────────────────
+
+    // 6. Auto-abrir o WhatsApp após 1.8s
+    setTimeout(function () {
+        if (btnWa && btnWa.href !== '#') {
+            window.open(url, '_blank', 'noopener,noreferrer');
+        }
+    }, 1800);
+
 })();
 </script>
-
-        // Ler dados do lead salvos pelo form.js
-        var nome     = sessionStorage.getItem('ln_lead_nome')     || '';
-        var intencao = sessionStorage.getItem('ln_lead_intencao') || '';
-        var regiao   = sessionStorage.getItem('ln_lead_regiao')   || '';
-        var plano    = sessionStorage.getItem('ln_lead_plano')    || '';
-
-        // Montar mensagem para o WhatsApp
-        var msg = 'Olá, vi seu anúncio no Google. Me chamo ' + (nome || 'um interessado');
-        msg += ', estou buscando por ' + (intencao || 'internet');
-        msg += ' e moro em ' + (regiao || 'Rondônia') + '.';
-        if (plano) msg += '\n\nPlano de interesse: ' + plano;
-
-        // Exibir preview no card
-        var preview = document.getElementById('msgPreview');
-        if (preview) preview.textContent = msg;
-
-        // Montar link do WhatsApp
-        var url = 'https://api.whatsapp.com/send/?phone=' + WHATSAPP
-                + '&text=' + encodeURIComponent(msg);
-        var btnWa = document.getElementById('btnWhatsapp');
-        if (btnWa) btnWa.href = url;
-
-        // Disparar evento de conversão via GTM
-        window.dataLayer = window.dataLayer || [];
-        window.dataLayer.push({ event: 'lead_conversion' });
-
-        // ── Salvar lead no Supabase ──────────────────────────────
-        try {
-            var sb = supabase.createClient(
-                'https://wxhbzdmmekeditxerqhd.supabase.co',
-                'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Ind4aGJ6ZG1tZWtlZGl0eGVycWhkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ2NDEzNjYsImV4cCI6MjA5MDIxNzM2Nn0.xq8jVwIjDfZjIx_QsHx2rAdJJmGl236JqYRVr4xbDHg'
-            );
-
-            // Resolver source/medium quando não há UTMs explícitas
-            var rawSource   = sessionStorage.getItem('ln_lead_utm_source') || '';
-            var rawMedium   = sessionStorage.getItem('ln_lead_utm_medium') || '';
-            var rawGclid    = sessionStorage.getItem('ln_lead_gclid')      || '';
-            var finalSource, finalMedium;
-
-            if (rawSource) {
-                // UTMs presentes: usar como vieram
-                finalSource = rawSource;
-                finalMedium = rawMedium || null;
-            } else if (rawGclid) {
-                // GCLID sem UTMs = Google Ads com auto-tagging
-                finalSource = 'google';
-                finalMedium = 'cpc';
-            } else {
-                // Sem nenhum parâmetro = acesso direto
-                finalSource = 'direct';
-                finalMedium = null;
-            }
-
-            sb.from('leads').insert([{
-                nome:         nome,
-                intencao:     intencao,
-                regiao:       regiao,
-                plano:        plano,
-                utm_source:   finalSource,
-                utm_medium:   finalMedium,
-                utm_campaign: sessionStorage.getItem('ln_lead_utm_campaign') || null,
-                utm_term:     sessionStorage.getItem('ln_lead_utm_term')     || null,
-                utm_content:  sessionStorage.getItem('ln_lead_utm_content')  || null,
-                gclid:        rawGclid || null
-            }]).then(function (res) {
-                if (res.error) console.warn('[Supabase] Erro ao salvar lead:', res.error.message);
-            });
-        } catch (e) {
-            console.warn('[Supabase] Falha na inicialização:', e);
-        }
-        // ────────────────────────────────────────────────────────
-
-        // Auto-abrir o WhatsApp após 1.8s (melhora experiência mobile)
-        setTimeout(function () {
-            if (btnWa && btnWa.href !== '#') {
-                window.open(url, '_blank', 'noopener,noreferrer');
-            }
-        }, 1800);
-
-    })();
-    </script>
 </body>
 </html>
