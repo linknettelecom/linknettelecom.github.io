@@ -229,7 +229,7 @@
 
         // 1. Monta a mensagem e o link do WhatsApp
         var WHATSAPP = '556932368140';
-        var msg = 'Olá, vi seu anúncio no Google. Me chamo ' + (dados.nome || 'um interessado');
+        var msg = 'Olá, vi seu anúncio no Site. Me chamo ' + (dados.nome || 'um interessado');
         msg += ', estou buscando por ' + (dados.intencao || 'internet');
         msg += ' e moro em ' + (dados.regiao || 'Rondônia') + '.';
         if (dados.plano) msg += '\n\nPlano de interesse: ' + dados.plano;
